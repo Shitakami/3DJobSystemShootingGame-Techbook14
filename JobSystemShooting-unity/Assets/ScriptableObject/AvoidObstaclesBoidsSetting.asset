@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cb46f6f50da5654c9cde276cb31f585, type: 3}
+  m_Name: AvoidObstaclesBoidsSetting
+  m_EditorClassIdentifier: 
+  _instanceCount: 15000
+  _cohesionWeight: 2
+  _cohesionAffectedRadius: 0.35
+  _cohesionViewAngle: 250
+  _separationWeight: 3
+  _separationAffectedRadius: 0.2
+  _separationViewAngle: 360
+  _alignmentWeight: 2
+  _alignmentAffectedRadius: 0.25
+  _alignmentViewAngle: 250
+  _avoidSimulationAreaWeight: 2.5
+  _instanceScale:
+    x: 0.05
+    y: 0.05
+    z: 0.1
+  _maxSpeed: 1.2
+  _maxSteerForce: 0.7
+  _initializedSpeed: 0.1
+  _collisionRadius: 0.15
+  _spherecastDistance: 0.45
+  _spherecastRadius: 0.02
+  _avoidRotateVelocity: 5
+  _escapeObstaclesWeight: 1.5
+  _escapeMaxSpeed: 1.5
+  _registerInstanceToGridBatchCount: 500
+  _calculateBoidsSteerForceBatchCount: 500
+  _spherecastCommandCommandsPerJob: 2000
+  _applySteerForceWithAvoidanceBatchCount: 500
+  _avoidObstaclesAndUpdateBoidsBatchCount: 500
+  _collisionCheckBatchCount: 0
