@@ -11,7 +11,7 @@ namespace Shitakami.Boids.Debugger
             if (!_drawArea) return;
             
             Gizmos.color = _gizmoColor;
-            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
+            Gizmos.matrix = Matrix4x4.TRS(transform.position, Quaternion.identity, transform.localScale);
             Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
         }
     }
