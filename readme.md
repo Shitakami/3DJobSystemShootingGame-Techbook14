@@ -44,7 +44,7 @@ https://github.com/Shitakami/3DJobSystemShootingGame-Techbook14/assets/31841026/
 
 * JobSystemShooting-unity : サンプルゲームのUnityプロジェクト
     * Assets
-        * Materials : DrawMeshInstancedIndirectdの描画で使用するMaterial、シーン上のオブジェクトのマテリアルなど
+        * Materials : DrawMeshInstancedIndirectdの描画で使用するMaterial、シーン上のオブジェクトのMaterialなど
         * Prefabs : サンプルゲームで使用されるPrefab
         * Scenes : サンプルゲームのシーン
         * ScriptableObject 
