@@ -5,7 +5,7 @@
 
 ### 関連
 
-Collider を避ける魚群シミュレーション サンプルリポジトリ : https://github.com/Shitakami/BoidsSimulation_ColliderAvoidance
+Collider を避ける魚群シミュレーション サンプルリポジトリ : https://github.com/Shitakami/BoidsSimulation_ColliderAvoidance  
 ※バージョンが低いので現バージョンと異なる部分があります。
 
 ### サンプルプロジェクトの環境
