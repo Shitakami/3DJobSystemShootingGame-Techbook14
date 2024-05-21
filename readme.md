@@ -19,7 +19,7 @@ Collider を避ける魚群シミュレーション サンプルリポジトリ 
 
 ### プレイ動画
 
-<!-- プレイ動画を貼る -->
+https://github.com/Shitakami/3DJobSystemShootingGame-Techbook14/assets/31841026/e988ffc0-300a-4160-a841-1fcc46704e54
 
 プレイ環境
 * Windows11
