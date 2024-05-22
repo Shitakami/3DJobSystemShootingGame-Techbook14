@@ -34,7 +34,7 @@ https://github.com/Shitakami/3DJobSystemShootingGame-Techbook14/assets/31841026/
 #### サンプルゲームの操作方法
 
 * カメラ回転 : マウス移動
-* スペスキー : 弾を発射
+* スペースキー : 弾を発射
 
 <br>
 <br>
