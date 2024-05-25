@@ -10,14 +10,20 @@ namespace Shitakami.Boids.SceneObjects
         [SerializeField] private int _initialPoolSize;
 
         private Queue<EffectLifeTime> _pool = new Queue<EffectLifeTime>();
-
+        private ExplosionObstacle[] _explosionObstacleArray;
+        
+        public IReadOnlyList<ExplosionObstacle> ExplosionObstacleArray => _explosionObstacleArray; 
+        
         public void Setup()
         {
+            _explosionObstacleArray = new ExplosionObstacle[_initialPoolSize];
+            
             for (var i = 0; i < _initialPoolSize; i++)
             {
                 var explosionEffect = Instantiate(_explosionEffectPrefab, transform);
                 explosionEffect.gameObject.SetActive(false);
                 explosionEffect.SetEffectDestroyedEvent(ReturnEffect);
+                _explosionObstacleArray[i] = explosionEffect.gameObject.AddComponent<ExplosionObstacle>();
                 _pool.Enqueue(explosionEffect);
             }
         }

@@ -10,6 +10,8 @@ namespace Shitakami.Boids.SceneObjects
 
         private Queue<Bullet> _pool = new Queue<Bullet>();
         private Bullet[] _bulletArray;
+        
+        public IReadOnlyList<Bullet> BulletArray => _bulletArray;
 
         public void Setup()
         {
@@ -48,11 +50,6 @@ namespace Shitakami.Boids.SceneObjects
             var bullet = _bulletArray[index];
             bullet.gameObject.SetActive(false);
             _pool.Enqueue(bullet);
-        }
-
-        public Bullet[] GetBulletArray()
-        {
-            return _bulletArray;
         }
 
         private void OnDestroy()

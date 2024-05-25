@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Shitakami.Boids.Data;
 using Unity.Collections;
 using Unity.Jobs;
@@ -12,8 +13,6 @@ namespace Shitakami.Boids
     {
         private readonly BoidsSetting _boidsSetting;
         private readonly int _instanceCount;
-        private readonly ExplosionObstacle[] _explosionObstacles;
-        private readonly Bullet[] _bullets;
         private NativeArray<BoidsData> _boidsDatas;
         private NativeArray<bool> _aliveFlagDatas;
         private NativeParallelMultiHashMap<int3, BoidsDataWithIndex> _gridHashMap;
@@ -31,13 +30,11 @@ namespace Shitakami.Boids
 
         public BoidsSimulator(
             BoidsSetting boidsSetting,
-            ExplosionObstacle[] explosionObstacles,
-            Bullet[] bullets)
+            int explosionObstaclesCount,
+            int bulletsCount)
         {
             _boidsSetting = boidsSetting;
             _instanceCount = boidsSetting.InstanceCount;
-            _explosionObstacles = explosionObstacles;
-            _bullets = bullets;
 
             _boidsDatas = new NativeArray<BoidsData>(_instanceCount, Allocator.Persistent);
             _aliveFlagDatas = new NativeArray<bool>(_instanceCount, Allocator.Persistent);
@@ -47,9 +44,9 @@ namespace Shitakami.Boids
             _raycastHits = new NativeArray<RaycastHit>(_instanceCount, Allocator.Persistent);
             _boidsSteers = new NativeArray<float3>(_instanceCount, Allocator.Persistent);
             _boidsTransformMatrices = new NativeArray<Matrix4x4>(_instanceCount, Allocator.Persistent);
-            _obstacleDatas = new NativeArray<ObstacleData>(explosionObstacles.Length, Allocator.Persistent);
-            _bulletDatas = new NativeArray<BulletData>(_bullets.Length, Allocator.Persistent);
-            _collisionDatas = new NativeArray<CollisionData>(_bullets.Length, Allocator.Persistent);
+            _obstacleDatas = new NativeArray<ObstacleData>(explosionObstaclesCount, Allocator.Persistent);
+            _bulletDatas = new NativeArray<BulletData>(bulletsCount, Allocator.Persistent);
+            _collisionDatas = new NativeArray<CollisionData>(bulletsCount, Allocator.Persistent);
         }
 
         public void InitializeBoidsPositionAndRotation(float3 simulationAreaCenter, float3 simulationAreaScale)
@@ -69,18 +66,24 @@ namespace Shitakami.Boids
             }
         }
 
+        public void SetExplosionObstacleData(IReadOnlyList<ExplosionObstacle> explosionObstacles)
+        {
+            for (var i = 0; i < explosionObstacles.Count; i++)
+            {
+                _obstacleDatas[i] = explosionObstacles[i].ObstacleData;
+            }
+        }
+        
+        public void SetBulletData(IReadOnlyList<Bullet> bullets)
+        {
+            for (var i = 0; i < bullets.Count; i++)
+            {
+                _bulletDatas[i] = bullets[i].GetBulletData();
+            }
+        }
+
         public void ExecuteJob(float3 simulationAreaCenter, float3 simulationAreaScale)
         {
-            for (var i = 0; i < _explosionObstacles.Length; i++)
-            {
-                _obstacleDatas[i] = _explosionObstacles[i].ObstacleData;
-            }
-
-            for (var i = 0; i < _bullets.Length; i++)
-            {
-                _bulletDatas[i] = _bullets[i].GetBulletData();
-            }
-
             _gridHashMap.Clear();
 
             var registerInstanceToGridJob = new RegisterBoidsDataToGridJob

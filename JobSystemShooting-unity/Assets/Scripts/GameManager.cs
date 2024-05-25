@@ -28,10 +28,9 @@ namespace Shitakami
 
             _boidsSimulator = new BoidsSimulator(
                 _boidsSetting,
-                _explosionEffectPool.ApplyMovableObstacleToEffect(),
-                _bulletPool.GetBulletArray()
+                _explosionEffectPool.ExplosionObstacleArray.Count,
+                _bulletPool.BulletArray.Count
             );
-
             _boidsSimulator.InitializeBoidsPositionAndRotation(_transform.position, _transform.localScale);
             _instanceDrawer.Initialize(_boidsSetting.InstanceCount);
 
@@ -55,6 +54,8 @@ namespace Shitakami
             _instanceDrawer.SetPositionAndScale(position, localScale);
             _instanceDrawer.Draw(_boidsSimulator.BoidsTransformMatrices);
 
+            _boidsSimulator.SetExplosionObstacleData(_explosionEffectPool.ExplosionObstacleArray);
+            _boidsSimulator.SetBulletData(_bulletPool.BulletArray);
             _boidsSimulator.ExecuteJob(position, localScale);
         }
 
