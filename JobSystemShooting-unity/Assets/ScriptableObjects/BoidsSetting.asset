@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb46f6f50da5654c9cde276cb31f585, type: 3}
   m_Name: BoidsSetting
   m_EditorClassIdentifier: 
-  _instanceCount: 30000
+  _instanceCount: 15000
   _cohesionWeight: 2
   _cohesionAffectedRadius: 0.35
   _cohesionViewAngle: 250
