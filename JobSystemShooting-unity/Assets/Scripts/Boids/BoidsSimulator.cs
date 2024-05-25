@@ -183,7 +183,7 @@ namespace Shitakami.Boids
             JobHandle.ScheduleBatchedJobs();
         }
 
-        public void Complete()
+        public void CompleteAllJob()
         {
             _jobHandle.Complete();
         }
@@ -198,7 +198,7 @@ namespace Shitakami.Boids
         public void Dispose()
         {
             // MEMO: Job実行中は NativeArray.Dispose が出来ないので、Jobが完了するまで待つ
-            Complete();
+            CompleteAllJob();
 
             _boidsDatas.Dispose();
             _aliveFlagDatas.Dispose();

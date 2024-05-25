@@ -14,10 +14,10 @@ namespace Shitakami
         [SerializeField] private BulletPool _bulletPool;
         [SerializeField] private ExplosionEffectPool _explosionEffectPool;
 
-        private BoidsSimulator _avoidObstaclesBoidsSimulator;
+        private BoidsSimulator _boidsSimulator;
         private Transform _transform;
 
-        private bool IsActive => _avoidObstaclesBoidsSimulator != null;
+        private bool IsActive => _boidsSimulator != null;
 
         public void Start()
         {
@@ -26,14 +26,13 @@ namespace Shitakami
 
             _transform = transform;
 
-            _avoidObstaclesBoidsSimulator = new BoidsSimulator(
+            _boidsSimulator = new BoidsSimulator(
                 _boidsSetting,
                 _explosionEffectPool.ApplyMovableObstacleToEffect(),
                 _bulletPool.GetBulletArray()
             );
 
-            _avoidObstaclesBoidsSimulator.InitializeBoidsPositionAndRotation(_transform.position,
-                _transform.localScale);
+            _boidsSimulator.InitializeBoidsPositionAndRotation(_transform.position, _transform.localScale);
             _instanceDrawer.Initialize(_boidsSetting.InstanceCount);
 
             gameObject.SetActive(true);
@@ -46,17 +45,17 @@ namespace Shitakami
                 return;
             }
 
-            var collisionData = _avoidObstaclesBoidsSimulator.GetCollisionData();
+            var collisionData = _boidsSimulator.GetCollisionData();
             ApplyCollisionData(collisionData);
 
-            _avoidObstaclesBoidsSimulator.Complete();
+            _boidsSimulator.CompleteAllJob();
 
             var position = _transform.position;
             var localScale = _transform.localScale;
             _instanceDrawer.SetPositionAndScale(position, localScale);
-            _instanceDrawer.Draw(_avoidObstaclesBoidsSimulator.BoidsTransformMatrices);
+            _instanceDrawer.Draw(_boidsSimulator.BoidsTransformMatrices);
 
-            _avoidObstaclesBoidsSimulator.ExecuteJob(position, localScale);
+            _boidsSimulator.ExecuteJob(position, localScale);
         }
 
         private void ApplyCollisionData(NativeArray<CollisionData> collisionData)
@@ -82,8 +81,8 @@ namespace Shitakami
 
         private void DisposeAll()
         {
-            _avoidObstaclesBoidsSimulator?.Dispose();
-            _avoidObstaclesBoidsSimulator = null;
+            _boidsSimulator?.Dispose();
+            _boidsSimulator = null;
 
             _instanceDrawer.Dispose();
         }
