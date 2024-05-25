@@ -6,7 +6,7 @@ namespace Shitakami.Boids.SceneObjects
 {
     public class ExplosionEffectPool : MonoBehaviour
     {
-        [SerializeField] private EffectLifeTime _bulletPrefab;
+        [SerializeField] private EffectLifeTime _explosionEffectPrefab;
         [SerializeField] private int _initialPoolSize;
 
         private Queue<EffectLifeTime> _pool = new Queue<EffectLifeTime>();
@@ -15,10 +15,10 @@ namespace Shitakami.Boids.SceneObjects
         {
             for (var i = 0; i < _initialPoolSize; i++)
             {
-                var bullet = Instantiate(_bulletPrefab, transform);
-                bullet.gameObject.SetActive(false);
-                bullet.SetEffectDestroyedEvent(ReturnEffect);
-                _pool.Enqueue(bullet);
+                var explosionEffect = Instantiate(_explosionEffectPrefab, transform);
+                explosionEffect.gameObject.SetActive(false);
+                explosionEffect.SetEffectDestroyedEvent(ReturnEffect);
+                _pool.Enqueue(explosionEffect);
             }
         }
 

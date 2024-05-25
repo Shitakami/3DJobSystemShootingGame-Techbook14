@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9127ae08feaa36d439bbb37de84ab9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 3456555585125868779, guid: 091f5f00380367c469253db61b8f4080, type: 3}
+  _explosionEffectPrefab: {fileID: 3456555585125868779, guid: 091f5f00380367c469253db61b8f4080, type: 3}
   _initialPoolSize: 30
 --- !u!4 &569851702
 Transform:
