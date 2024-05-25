@@ -38,8 +38,7 @@ namespace Shitakami.Boids
 
             _boidsDatas = new NativeArray<BoidsData>(_instanceCount, Allocator.Persistent);
             _aliveFlagDatas = new NativeArray<bool>(_instanceCount, Allocator.Persistent);
-            _gridHashMap =
-                new NativeParallelMultiHashMap<int3, BoidsDataWithIndex>(_instanceCount, Allocator.Persistent);
+            _gridHashMap = new NativeParallelMultiHashMap<int3, BoidsDataWithIndex>(_instanceCount, Allocator.Persistent);
             _spherecastCommands = new NativeArray<SpherecastCommand>(_instanceCount, Allocator.Persistent);
             _raycastHits = new NativeArray<RaycastHit>(_instanceCount, Allocator.Persistent);
             _boidsSteers = new NativeArray<float3>(_instanceCount, Allocator.Persistent);

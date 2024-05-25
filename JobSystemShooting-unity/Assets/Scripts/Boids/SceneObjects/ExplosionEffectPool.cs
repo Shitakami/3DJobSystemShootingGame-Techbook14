@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Shitakami.Boids.SceneObjects
@@ -45,13 +44,6 @@ namespace Shitakami.Boids.SceneObjects
         {
             effectLifeTime.gameObject.SetActive(false);
             _pool.Enqueue(effectLifeTime);
-        }
-
-        public ExplosionObstacle[] ApplyMovableObstacleToEffect()
-        {
-            return _pool
-                .Select(poolObjectLifeTime => poolObjectLifeTime.gameObject.AddComponent<ExplosionObstacle>())
-                .ToArray();
         }
 
         private void OnDestroy()
